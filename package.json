@@ -16,14 +16,16 @@
     "node": "*"
   },
   "dependencies": {
+    "fs-extra": "~0.11.0",
+    "bunyan": "~1.0.1",
+    "ssh2": "~0.3.5"
   },
   "main": "lib/main",
   "repository": {
     "type": "git",
     "url": "https://github.com/pelger/nfd-util.git"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "gulp coverage"
   }

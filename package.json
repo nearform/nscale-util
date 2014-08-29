@@ -1,13 +1,14 @@
 {
-  "name": "nfd-util",
-  "description": "nearForm deployer utility helpers",
+  "name": "nscale-util",
+  "description": "nearForm's nscale utility helpers",
   "keywords": [
     "nearForm",
+    "nscale",
     "deployer",
     "utilities"
   ],
   "version": "0.0.1",
-  "license": "MIT",
+  "license": "Artistic License 2.0",
   "author": "Peter Elger (http://nearform.com/)",
   "contributors": [
     "Peter Elger <elger.peter@gmail.com> (http://peterelger.com/)"
@@ -26,7 +27,5 @@
     "url": "https://github.com/pelger/nfd-util.git"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "gulp coverage"
-  }
+  "scripts": {}
 }

@@ -14,6 +14,6 @@ cat /tmp/$TMPID | docker import - $1/$2
 # cleandown
 DOCKERTMPID=`docker images | grep  '^$1\/$2tmp ' | grep latest | awk -v x=3 '{print $x}'`
 docker rmi $DOCKERTMPID
-docker ps -a -notrunc | grep 'Exit' | awk '{print $1}' | xargs -r docker rm
-docker images -notrunc| grep none | awk '{print $3}' | xargs -r docker rmi
+docker ps -a --no-trunc | grep 'Exit' | awk '{print $1}' | xargs -r docker rm
+docker images --no-trunc| grep none | awk '{print $3}' | xargs -r docker rmi
 

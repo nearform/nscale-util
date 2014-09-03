@@ -1,0 +1,346 @@
+{
+  "name": "sudc",
+  "namespace": "sudc",
+  "id": "837afd1d-0595-4eb1-b617-e82b52c3b27c",
+  "containerDefinitions": [
+    {
+      "id": "sudc-bal-865027589.eu-west-1.elb.amazonaws.com",
+      "nativeId": "sudc-bal-865027589.eu-west-1.elb.amazonaws.com",
+      "type": "aws-elb",
+      "name": "sudc-bal",
+      "specific": {}
+    },
+    {
+      "id": "ami-139c5f64",
+      "name": "ami-139c5f64",
+      "nativeId": "ami-139c5f64",
+      "type": "aws-ami",
+      "specific": {}
+    },
+    {
+      "name": "nfd",
+      "id": "sg-8daf81fa",
+      "type": "aws-sg",
+      "specific": {
+        "OwnerId": "711655675495",
+        "GroupName": "nfd",
+        "GroupId": "sg-8daf81fa",
+        "Description": "nfd",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "UserIdGroupPairs": [],
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ]
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3000,
+            "ToPort": 3000,
+            "UserIdGroupPairs": [],
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ]
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 8000,
+            "ToPort": 8000,
+            "UserIdGroupPairs": [],
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ]
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 9000,
+            "ToPort": 9000,
+            "UserIdGroupPairs": [],
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ]
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 9001,
+            "ToPort": 9001,
+            "UserIdGroupPairs": [],
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ]
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 9002,
+            "ToPort": 9002,
+            "UserIdGroupPairs": [],
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ]
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 873,
+            "ToPort": 873,
+            "UserIdGroupPairs": [],
+            "IpRanges": [
+              {
+                "CidrIp": "10.0.0.0/8"
+              }
+            ]
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "UserIdGroupPairs": [],
+            "IpRanges": [
+              {
+                "CidrIp": "10.0.0.0/8"
+              }
+            ]
+          }
+        ],
+        "IpPermissionsEgress": [],
+        "Tags": []
+      }
+    },
+    {
+      "id": "cb865e5a6a572cab7f3f37570afd472686988971189b0255358afa9693902cd6",
+      "name": "web",
+      "type": "docker",
+      "specific": {
+        "repositoryUrl": "git@github.com:pelger/startupdeathclock.git",
+        "buildScript": "buildweb.sh",
+        "arguments": "-e WEB_HOST=10.75.29.243 -p 8000:8000 -d __TARGETNAME__ sh /web/run.sh",
+        "buildHead": 221,
+        "binary": "/home/ubuntu/data/build/sudc/builds/web-220",
+        "imageTag": "web-219:latest",
+        "dockerImageId": "bc86b3f7c03334dedb546f5721a1d45eefb0088f03a8db185b19157996b2ac35"
+      },
+      "version": "0.0.0"
+    },
+    {
+      "id": "5fb44faa481a7eb5c6b01ff25d8a230c21ce0f92a2f7935963e2bef3563deb63",
+      "name": "hist-srv",
+      "type": "docker",
+      "specific": {
+        "repositoryUrl": "git@github.com:pelger/startupdeathclock.git",
+        "buildScript": "buildhist.sh",
+        "arguments": "-p 9000:9000 -d __TARGETNAME__ /usr/bin/node /srv/hist-srv",
+        "buildHead": 193,
+        "binary": "/home/ubuntu/data/build/sudc/builds/hist-srv-192",
+        "imageTag": "hist-srv-191:latest",
+        "dockerImageId": "5ad4b808d16c529ec5155bf5b50065e807f1e3c927d416540b2b68067fec271f"
+      },
+      "version": "0.0.0"
+    },
+    {
+      "id": "86acea6af8d8a90ab2a7a9f051ca48030afff32c04f245af9ca7cf2537af74f7",
+      "name": "real-srv",
+      "type": "docker",
+      "specific": {
+        "repositoryUrl": "git@github.com:pelger/startupdeathclock.git",
+        "buildScript": "buildreal.sh",
+        "arguments": "-p 9001:9001 -d __TARGETNAME__ /usr/bin/node /srv/real-srv",
+        "buildHead": 45,
+        "binary": "/home/ubuntu/data/build/sudc/builds/real-srv-44",
+        "imageTag": "real-srv-43:latest",
+        "dockerImageId": "c2b62fe50e8c705fea7b0326ec25f3a44556ffc5986e9bf02f3d880083740c72"
+      },
+      "version": "0.0.0"
+    },
+    {
+      "id": "f1b6157b2ea50d83e110928cd4de5e0548d85238128cad6466ad544d655aa152",
+      "name": "doc-srv",
+      "type": "docker",
+      "specific": {
+        "repositoryUrl": "git@github.com:pelger/startupdeathclock.git",
+        "buildScript": "builddoc.sh",
+        "arguments": "-p 9002:9002 -d __TARGETNAME__ /usr/bin/node /srv/doc-srv",
+        "buildHead": 27,
+        "binary": "/home/ubuntu/data/build/sudc/builds/doc-srv-26",
+        "imageTag": "doc-srv-24:latest",
+        "dockerImageId": "5462b3d055c9d74739e43f790134fe8f6f1eb764d578f61741b6c9613a4121d3"
+      },
+      "version": "0.0.0"
+    }
+  ],
+  "topology": {
+    "containers": {
+      "i-643cc024": {
+        "id": "i-643cc024",
+        "name": "i-643cc024",
+        "nativeId": "i-643cc024",
+        "contains": [],
+        "type": "aws-instance",
+        "specific": {
+          "imageId": "ami-139c5f64",
+          "instanceId": "i-643cc024",
+          "publicIpAddress": "54.220.11.72",
+          "privateIpAddress": "10.74.143.152",
+          "securityGroups": [
+            {
+              "GroupName": "nfd",
+              "GroupId": "sg-8daf81fa"
+            }
+          ],
+          "tags": [
+            {
+              "Key": "nfd-id",
+              "Value": "1122"
+            },
+            {
+              "Key": "Name",
+              "Value": "demo"
+            },
+            {
+              "Key": "nfd-namespace",
+              "Value": "sudc"
+            }
+          ]
+        },
+        "containerDefinitionId": "ami-139c5f64",
+        "containedBy": "sudc-bal-865027589.eu-west-1.elb.amazonaws.com"
+      },
+      "i-653cc025": {
+        "id": "i-653cc025",
+        "name": "i-653cc025",
+        "nativeId": "i-653cc025",
+        "contains": [
+          "15394563-0643-4ed7-a423-9fc14f8baf36",
+          "d783b5cf-9183-4dcd-9810-e2bae22ccc31",
+          "1fe5425f-ae67-4fd5-a409-64a0ef0b3343",
+          "210bbb2d-f34e-489a-887c-efc0eed55c32"
+        ],
+        "type": "aws-instance",
+        "specific": {
+          "imageId": "ami-139c5f64",
+          "instanceId": "i-653cc025",
+          "publicIpAddress": "54.73.178.192",
+          "privateIpAddress": "10.75.29.243",
+          "securityGroups": [
+            {
+              "GroupName": "nfd",
+              "GroupId": "sg-8daf81fa"
+            }
+          ],
+          "tags": [
+            {
+              "Key": "nfd-id",
+              "Value": "1123"
+            },
+            {
+              "Key": "nfd-namespace",
+              "Value": "sudc"
+            },
+            {
+              "Key": "Name",
+              "Value": "demo"
+            }
+          ]
+        },
+        "containerDefinitionId": "ami-139c5f64",
+        "containedBy": "sudc-bal-865027589.eu-west-1.elb.amazonaws.com"
+      },
+      "sudc-bal-865027589.eu-west-1.elb.amazonaws.com": {
+        "id": "sudc-bal-865027589.eu-west-1.elb.amazonaws.com",
+        "name": "sudc-bal",
+        "containedBy": "sudc-bal-865027589.eu-west-1.elb.amazonaws.com",
+        "type": "aws-elb",
+        "nativeId": "sudc-bal-865027589.eu-west-1.elb.amazonaws.com",
+        "containerDefinitionId": "sudc-bal-865027589.eu-west-1.elb.amazonaws.com",
+        "contains": [
+          "i-643cc024",
+          "i-653cc025"
+        ],
+        "specific": {
+          "LoadBalancerName": "sudc-bal",
+          "AvailabilityZones": [
+            "eu-west-1c"
+          ],
+          "Scheme": "internet-facing",
+          "Listeners": [
+            {
+              "Protocol": "HTTP",
+              "LoadBalancerPort": 80,
+              "InstanceProtocol": "HTTP",
+              "InstancePort": 8000
+            }
+          ]
+        }
+      },
+      "1fe5425f-ae67-4fd5-a409-64a0ef0b3343": {
+        "id": "1fe5425f-ae67-4fd5-a409-64a0ef0b3343",
+        "type": "docker",
+        "containerDefinitionId": "5fb44faa481a7eb5c6b01ff25d8a230c21ce0f92a2f7935963e2bef3563deb63",
+        "containedBy": "i-653cc025",
+        "contains": [],
+        "specific": {
+          "dockerImageId": "5ad4b808d16c529ec5155bf5b50065e807f1e3c927d416540b2b68067fec271f",
+          "containerBinary": "/home/ubuntu/data/build/sudc/builds/hist-srv-192",
+          "dockerLocalTag": "sudc/hist-srv-192",
+          "buildNumber": 192,
+          "version": "0.0.0"
+        }
+      },
+      "210bbb2d-f34e-489a-887c-efc0eed55c32": {
+        "id": "210bbb2d-f34e-489a-887c-efc0eed55c32",
+        "type": "docker",
+        "containerDefinitionId": "86acea6af8d8a90ab2a7a9f051ca48030afff32c04f245af9ca7cf2537af74f7",
+        "containedBy": "i-653cc025",
+        "contains": [],
+        "specific": {
+          "dockerImageId": "c2b62fe50e8c705fea7b0326ec25f3a44556ffc5986e9bf02f3d880083740c72",
+          "containerBinary": "/home/ubuntu/data/build/sudc/builds/real-srv-44",
+          "dockerLocalTag": "sudc/real-srv-44",
+          "buildNumber": 44,
+          "version": "0.0.0"
+        }
+      },
+      "d783b5cf-9183-4dcd-9810-e2bae22ccc31": {
+        "id": "d783b5cf-9183-4dcd-9810-e2bae22ccc31",
+        "type": "docker",
+        "containerDefinitionId": "f1b6157b2ea50d83e110928cd4de5e0548d85238128cad6466ad544d655aa152",
+        "containedBy": "i-653cc025",
+        "contains": [],
+        "specific": {
+          "dockerImageId": "5462b3d055c9d74739e43f790134fe8f6f1eb764d578f61741b6c9613a4121d3",
+          "containerBinary": "/home/ubuntu/data/build/sudc/builds/doc-srv-26",
+          "dockerLocalTag": "sudc/doc-srv-26",
+          "buildNumber": 26,
+          "version": "0.0.0"
+        }
+      },
+      "15394563-0643-4ed7-a423-9fc14f8baf36": {
+        "id": "15394563-0643-4ed7-a423-9fc14f8baf36",
+        "type": "docker",
+        "containerDefinitionId": "cb865e5a6a572cab7f3f37570afd472686988971189b0255358afa9693902cd6",
+        "containedBy": "i-653cc025",
+        "contains": [],
+        "specific": {
+          "dockerImageId": "bc86b3f7c03334dedb546f5721a1d45eefb0088f03a8db185b19157996b2ac35",
+          "containerBinary": "/home/ubuntu/data/build/sudc/builds/web-220",
+          "dockerLocalTag": "sudc/web-220",
+          "buildNumber": 220,
+          "version": "0.0.0"
+        }
+      }
+    }
+  }
+}

@@ -14,11 +14,9 @@
 
 'use strict';
 
-exports.docker = function() { return require('./docker'); };
-exports.dockerBuilder = function(config) { return require('./dockerBuilder')(config); };
-exports.paths = function() { return require('./paths'); };
-exports.sshcp = function() { return require('./sshcp')(); };
-exports.sshexec = function() { return require('./sshexec')(); };
-exports.executor = function() { return require('./executor'); };
-exports.recursor = function() { return require('./recursor'); };
-exports.sysdef = function() { return require('./sysdef'); };
+var sd = require('../lib/sysdef');
+var obj = require('./data/testdata.json');
+
+var updated = sd.replaceId('i-653cc025', 'fish', obj);
+console.log(JSON.stringify(updated, null, 2));
+

@@ -20,9 +20,10 @@
     "bunyan": "~1.0.1",
     "dockerode": "^2.0.3",
     "fs-extra": "~0.11.0",
+    "lodash": "~2.4.1",
     "ssh2": "~0.3.5",
-    "underscore": "^1.7.0",
-    "lodash": "~2.4.1"
+    "traverse": "^0.6.6",
+    "underscore": "^1.7.0"
   },
   "main": "lib/main",
   "repository": {

@@ -14,12 +14,31 @@
 
 'use strict';
 
-exports.docker = function() { return require('./docker'); };
-exports.dockerBuilder = function(config, platform) { return require('./dockerBuilder')(config, platform); };
-exports.paths = function() { return require('./paths'); };
-exports.sshcp = function() { return require('./sshcp')(); };
-exports.sshexec = function() { return require('./sshexec')(); };
-exports.sshcheck = function() { return require('./sshCheck')(); };
-exports.executor = function() { return require('./executor'); };
-exports.recursor = function() { return require('./recursor'); };
-exports.sysdef = function() { return require('./sysdef'); };
+var ssh = require('../lib/main').sshcheck();
+var out = {stdout: console.log, stderr: console.log};
+
+
+
+describe('ssh check test', function() {
+
+  beforeEach(function(done) {
+    done();
+  });
+
+
+
+  afterEach(function(done) {
+    done();
+  });
+
+
+
+  it('should connect to a known system', function(done){
+    this.timeout(10000);
+    ssh.check('172.30.0.22', 'ubuntu', '/home/ubuntu/nscale-west2.pem', out, function(err, response) {
+      done();
+    });
+  });
+});
+
+

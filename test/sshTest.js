@@ -14,7 +14,7 @@
 
 'use strict';
 
-var ssh = require('../../lib/topology/deploy/aws/sshexec')();
+var ssh = require('../lib/sshexec')();
 
 
 
